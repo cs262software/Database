@@ -1,0 +1,24 @@
+{
+  "name": "theatre-software-suite",
+  "version": "1.0.0",
+  "description": "Software package for managing script and blocking in a theatre production.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cs262software/Theatre-Software-Suite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cs262software/Theatre-Software-Suite/issues"
+  },
+  "homepage": "https://github.com/cs262software/Theatre-Software-Suite#readme",
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-thunk": "^1.0.0"
+  }
+}
