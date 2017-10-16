@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import HomePage from '../containers/homePage';
+import BlockingPage from '../containers/blockingPage';
+import SchedulePage from '../containers/schedulePage';
+import StageDirectionsPage from '../containers/stageDirectionsPage';
+import LightsPage from '../containers/stageCrewPage/lightsPage';
+import SoundPage from '../containers/stageCrewPage/soundPage';
+
+/* Above, we're importing all the components we made for the different pages. Make sure their filepaths
+are correct. Filepaths are relative to the file you're currently in. Curly braces are used when you're
+importing named exports under a default export. E.g. React is a default export, and { Component } is a
+named export under React. */
+class Routes extends Component {
+
+    render() {
+        return (
+            <Switch>
+                {/* These routes contain the path (URL) we want to lead to the component we want to
+                    display. Paths should have intuitive names. */}
+                <Route exact path='/' component={HomePage} />
+                <Route path='/blocking' component={BlockingPage} />
+                <Route path='/schedule' component={SchedulePage} />
+                <Route path='/stage-directions' component={StageDirectionsPage} />
+                {/* Below is an example of a sub-route. */}
+                <Route path='/stage-crew/lights' component={LightsPage} />
+                <Route path='/stage-crew/sound' component={SoundPage} />
+            </Switch>
+        )
+    }
+
+}
+
+export default Routes;
