@@ -6,6 +6,7 @@ import SchedulePage from '../containers/schedulePage';
 import StageDirectionsPage from '../containers/stageDirectionsPage';
 import LightsPage from '../containers/stageCrewPage/lightsPage';
 import SoundPage from '../containers/stageCrewPage/soundPage';
+import ScriptPage from '../containers/scriptPage';
 
 /* Above, we're importing all the components we made for the different pages. Make sure their filepaths
 are correct. Filepaths are relative to the file you're currently in. Curly braces are used when you're
@@ -25,6 +26,7 @@ class Routes extends Component {
                 {/* Below is an example of a sub-route. */}
                 <Route path='/stage-crew/lights' component={LightsPage} />
                 <Route path='/stage-crew/sound' component={SoundPage} />
+                <Route path='/script' component={ScriptPage} />
             </Switch>
         )
     }

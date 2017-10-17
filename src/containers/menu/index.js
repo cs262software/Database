@@ -22,6 +22,7 @@ class Menu extends Component {
                                         <li><Link to='/blocking'>Blocking</Link></li>
                                         <li><Link to='/schedule'>Schedule</Link></li>
                                         <li><Link to='/stage-directions'>Stage Directions</Link></li>
+                                        <li><Link to='/script'>Scripts</Link></li>
                 					</ul>
                 				</li>
                                 <li className="dropdown">
