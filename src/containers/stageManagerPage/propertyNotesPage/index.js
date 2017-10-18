@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PropertyNotesPage extends Component {
+class SMPropertyNotesPage extends Component {
 
     render() {
         return (
@@ -12,4 +12,4 @@ class PropertyNotesPage extends Component {
 
 }
 
-export default PropertyNotesPage;
+export default SMPropertyNotesPage;
