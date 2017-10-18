@@ -7,6 +7,8 @@ import StageDirectionsPage from '../containers/stageDirectionsPage';
 import LightsPage from '../containers/stageCrewPage/lightsPage';
 import SoundPage from '../containers/stageCrewPage/soundPage';
 import ScriptPage from '../containers/scriptPage';
+import ActorBlockingPage from '../containers/actorPage/actorBlockingPage'
+import ActorLinesPage from '../containers/actorPage/actorLinesPage'
 import SMPropertyNotesPage from '../containers/stageManagerPage/propertyNotesPage';
 import ManagerSchedulePage from '../containers/stageManagerPage/schedulePage';
 import APropertyNotesPage from '../containers/actorPage/propertyNotesPage';
@@ -33,6 +35,8 @@ class Routes extends Component {
                 <Route path='/stage-manager/property-notes' component={SMPropertyNotesPage} />
                 <Route path='/stage-manager/schedule' component={ManagerSchedulePage} />
                 <Route path='/actor/property-notes' component={APropertyNotesPage} />
+                <Route path='/actor/blocking' component={ActorBlockingPage} />
+                <Route path='/actor/lines' component={ActorLinesPage} />
             </Switch>
         )
     }

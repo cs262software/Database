@@ -43,6 +43,8 @@ class Menu extends Component {
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actor<span className="caret"></span></a>
                                     <ul className="dropdown-menu">
                                         <li><Link to='/actor/property-notes'>Property Notes</Link></li>
+                                        <li><Link to='/actor/blocking'>Blocking</Link></li>
+                                        <li><Link to='/actor/lines'>Lines</Link></li>
                                     </ul>
                                 </li>
                 			</ul>
