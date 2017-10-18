@@ -26,6 +26,12 @@ class Menu extends Component {
                 					</ul>
                 				</li>
                                 <li className="dropdown">
+                					<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Director<span className="caret"></span></a>
+                					<ul className="dropdown-menu">
+                                        <li><Link to='/director/manage-crew'>Manage Crew</Link></li>
+                					</ul>
+                				</li>
+                                <li className="dropdown">
                 					<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stage Crew<span className="caret"></span></a>
                 					<ul className="dropdown-menu">
                                         <li><Link to='/stage-crew/lights'>Lights</Link></li>
