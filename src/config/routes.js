@@ -7,6 +7,8 @@ import StageDirectionsPage from '../containers/stageDirectionsPage';
 import LightsPage from '../containers/stageCrewPage/lightsPage';
 import SoundPage from '../containers/stageCrewPage/soundPage';
 import ScriptPage from '../containers/scriptPage';
+import PropertyNotesPage from '../containers/stageManagerPage/propertyNotesPage';
+import ManagerSchedulePage from '../containers/stageManagerPage/schedulePage';
 
 /* Above, we're importing all the components we made for the different pages. Make sure their filepaths
 are correct. Filepaths are relative to the file you're currently in. Curly braces are used when you're
@@ -27,6 +29,8 @@ class Routes extends Component {
                 <Route path='/stage-crew/lights' component={LightsPage} />
                 <Route path='/stage-crew/sound' component={SoundPage} />
                 <Route path='/script' component={ScriptPage} />
+		<Route path='/stage-manager/property-notes' component={PropertyNotesPage} />
+		<Route path='/stage-manager/schedule' component={ManagerSchedulePage} />
             </Switch>
         )
     }
