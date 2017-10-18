@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class actorBlockingPage extends Component {
+class ActorBlockingPage extends Component {
 
     render() {
         return (
@@ -12,4 +12,4 @@ class actorBlockingPage extends Component {
 
 }
 
-export default actorBlockingPage;
+export default ActorBlockingPage;
