@@ -31,7 +31,13 @@ class Menu extends Component {
                                         <li><Link to='/stage-crew/lights'>Lights</Link></li>
                                         <li><Link to='/stage-crew/sound'>Sound</Link></li>
                 					</ul>
-                				</li>
+                                </li>
+                                <li className="dropdown">
+                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actor<span className="caret"></span></a>
+                                    <ul className="dropdown-menu">
+                                        <li><Link to='/actor/property-notes'>Property Notes</Link></li>
+                                    </ul>
+                                </li>
                 			</ul>
 
                 		</div>
