@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class actorLinesPage extends Component {
+class ActorLinesPage extends Component {
 
     render() {
         return (
@@ -12,4 +12,4 @@ class actorLinesPage extends Component {
 
 }
 
-export default actorLinesPage;
+export default ActorLinesPage;
