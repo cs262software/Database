@@ -31,6 +31,14 @@ class Menu extends Component {
                                         <li><Link to='/stage-crew/lights'>Lights</Link></li>
                                         <li><Link to='/stage-crew/sound'>Sound</Link></li>
                 					</ul>
+                				</li>
+                                <li className="dropdown">
+                					<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stage Manager<span className="caret"></span></a>
+                					<ul className="dropdown-menu">
+                                        <li><Link to='/stage-manager/property-notes'>Property Notes</Link></li>
+                                        <li><Link to='/stage-manager/schedule'>Schedule</Link></li>
+                					</ul>
+                				</li>
                                 </li>
                                 <li className="dropdown">
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actor<span className="caret"></span></a>
