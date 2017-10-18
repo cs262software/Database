@@ -9,6 +9,9 @@ import SoundPage from '../containers/stageCrewPage/soundPage';
 import ScriptPage from '../containers/scriptPage';
 import ActorBlockingPage from '../containers/actorPage/actorBlockingPage'
 import ActorLinesPage from '../containers/actorPage/actorLinesPage'
+import SMPropertyNotesPage from '../containers/stageManagerPage/propertyNotesPage';
+import ManagerSchedulePage from '../containers/stageManagerPage/schedulePage';
+import APropertyNotesPage from '../containers/actorPage/propertyNotesPage';
 
 /* Above, we're importing all the components we made for the different pages. Make sure their filepaths
 are correct. Filepaths are relative to the file you're currently in. Curly braces are used when you're
@@ -29,6 +32,9 @@ class Routes extends Component {
                 <Route path='/stage-crew/lights' component={LightsPage} />
                 <Route path='/stage-crew/sound' component={SoundPage} />
                 <Route path='/script' component={ScriptPage} />
+                <Route path='/stage-manager/property-notes' component={SMPropertyNotesPage} />
+                <Route path='/stage-manager/schedule' component={ManagerSchedulePage} />
+                <Route path='/actor/property-notes' component={APropertyNotesPage} />
                 <Route path='/actor/blocking' component={ActorBlockingPage} />
                 <Route path='/actor/lines' component={ActorLinesPage} />
             </Switch>
