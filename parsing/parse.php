@@ -59,7 +59,7 @@
 			$characterID = '';
 			if( $character && isset( $chars[$character] ) )
 			{
-				$characterID = "id='$chars[$character]'";
+				$characterID = "characterID='$chars[$character]'";
 			}
 			else if ( $character )
 			{
