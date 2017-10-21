@@ -38,21 +38,21 @@
 			$previous = 'blank';
 		}
 		// If the string starts with 'act'
-		else if ( $previous == 'blank' && preg_match( "/\W*ACT\W+(\w*)/i", $line, $array ) )
+		else if ( $previous == 'blank' && preg_match( "/\s*ACT\W+(\w*)/i", $line, $array ) )
 		{
 			
 			$script .= "<act id='$array[1]'>\n";
 			$previous = 'act';
 		}
 		// If the string starts with 'scene'
-		else if ( $previous == 'blank' && preg_match( "/\W*Scene\W+(\w*)/i", $line, $array ) )
+		else if ( $previous == 'blank' && preg_match( "/\s*Scene\W+(\w*)/i", $line, $array ) )
 		{
 			
 			$script .= "<scene id='$array[1]'>\n";
 			$previous = 'scene';
 		}
 		// Parse lines
-		else if ( $previous == 'blank' && preg_match( "/\W*(?P<name1>\w*\.)?\W*(?P<name2>\w*\.)?\W*(?P<text>.*)?/", $line, $array ) )
+		else if ( $previous == 'blank' && preg_match( "/\s*(?P<name1>\w*\.)?\s*(?P<name2>\w*\.)?\s*(?P<text>.*)?/", $line, $array ) )
 		{
 			$character = isset( $array['name1'] ) ? $array['name1'] : '';
 			$character .= isset( $array['name2'] ) ? $array['name2'] : '';
