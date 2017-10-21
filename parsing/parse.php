@@ -2,7 +2,7 @@
 	/**
 	 * @brief: A script for parsing text files into poorly formed script XML.
 	 *
-	 * Usage: php parse.php data/1524.txt | output/1524poor.xml
+	 * Usage: php parse.php data/1524.txt > output/1524poor.xml
 	 * @author: zjd7@students.calvin.edu (earboxer)
 	 */
 	// Take the first command line argument.
