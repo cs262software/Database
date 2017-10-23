@@ -9,14 +9,16 @@ module.exports = function( app ) {
 	app.use( bodyParser.json() ); // support json encoded bodies
 	app.use( bodyParser.urlencoded( { extended: true } ) ) // url encoded bodies
 
+	// Home page
+	app.route( '/' )
+		.get( function( req, res ) { res.send( "WELCOME" ); } );
+
 	// fileManager
 	var fileManager = require( '../controllers/fileManager' );
 	app.route( '/myfiles' )
 		.get( fileManager.listMyFiles );
 //	app.route( '/files' )
 //		.get( fileManager.getFile );
-
-	// ... [routes for another controller here]
 
 	// URL not found
 	app.use( function( req, res ) {
