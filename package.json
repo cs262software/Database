@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cs262software/Theatre-Software-Suite#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "react": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-thunk": "^1.0.0"
