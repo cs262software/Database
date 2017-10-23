@@ -15,4 +15,10 @@ React = v16.0.0, React-redux = v5.0.6, React-thunk = v1.0.0
 
 Back-End Libraries
 
+  backbone
+  express
+  mysql
+  mysql-model
+  underscore
+
 Database Libraries
