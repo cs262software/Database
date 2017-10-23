@@ -4,6 +4,7 @@
 
 'use strict';
 
+// Initialize globals
 var fileModel = require('../models/fileModel.js')
 
 /*
