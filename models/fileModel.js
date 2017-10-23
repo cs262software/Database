@@ -4,7 +4,7 @@
 
 'use strict';
 
-var mysql = require( 'mysql-model' );
+var mysql = require( 'mysql' );
 var modelPass = require( './modelPasswords' );
 var conn  = mysql.createConnection( {
 	host     : 'localhost',
@@ -18,9 +18,27 @@ var conn  = mysql.createConnection( {
  */
 exports.getFilesByUid = function( uid ) {
 	var files = []; // Store file results here
-	var file = new conn( { tableName: "file" } ); // mysql file model
-	file.find( 'all', { where: "uid = " + uid, }, function( err, rows ) {
-			files = rows;
+	conn.connect( function( err ) {
+		if ( err ) {
+			console.error( 'error connecting: ' + err.stack);
+			return;
+		}
+	} );
+	var sql = "SELECT * FROM file HWERE uid = ?";
+	var inserts = [ uid ];
+	sql = mysql.format( sql, inserts );
+	conn.query( sql, function( err, results, fields ) {
+		if ( err ) {
+			console.error( 'error fetching results: ' + err );
+			return;
+		}
+		files = results;
+	} );
+	conn.end( function( err ) {
+		if ( err ) {
+			console.error( 'error ending connection: ' + err.stack);
+			return;
+		}
 	} );
 	return files;
 }
