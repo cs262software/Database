@@ -1,5 +1,7 @@
 /*
  * routes.js Maintains the routing information for the server.
+ *
+ * Add/manage routing endpoints here
  */
 
 'use strict';

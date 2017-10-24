@@ -1,5 +1,5 @@
 /*
- * fileModel.js contains the functions that interact with the DB
+ * fileModel.js contains the file-related functions that interact with the DB
  */
 
 'use strict';

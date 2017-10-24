@@ -1,5 +1,7 @@
 /**
  * server.js runs the main nodejs express server
+ *
+ * run server with 'node server.js'
  */
 
 var express = require( 'express' );
