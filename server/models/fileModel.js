@@ -27,7 +27,7 @@ exports.getUserFiles = function( uid ) {
 	var sql = "SELECT * FROM file WHERE uid = ?"; // TODO: Dependant on database structure
 	var inserts = [ uid ];
 	sql = mysql.format( sql, inserts );
-	files = queryDB( conn, sql );
+	var files = queryDB( conn, sql );
 	closeDB( conn );
 	return files ? files : "NO RESULTS FOUND\n";
 }
