@@ -9,7 +9,7 @@ module.exports = function( app ) {
 	app.use( bodyParser.json() ); // support json encoded bodies
 	app.use( bodyParser.urlencoded( { extended: true } ) ) // url encoded bodies
 
-	// Home page
+	// Home page (temporary for testing puroposes)
 	app.route( '/' )
 		.get( function( req, res ) { res.send( "WELCOME" ); } );
 
@@ -17,8 +17,10 @@ module.exports = function( app ) {
 	var fileManager = require( '../controllers/fileManager' );
 	app.route( '/myfiles' )
 		.get( fileManager.listMyFiles );
-//	app.route( '/files' )
-//		.get( fileManager.getFile );
+	app.route( '/files' )
+		.get( fileManager.getFile );
+
+	// [add more routes here]
 
 	// URL not found
 	app.use( function( req, res ) {

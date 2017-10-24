@@ -17,5 +17,6 @@ Back-End Libraries
 
   express
   mysql
+  models/modelPasswords.js (see template)
 
 Database Libraries
