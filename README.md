@@ -15,4 +15,8 @@ React = v16.0.0, React-redux = v5.0.6, React-thunk = v1.0.0
 
 Back-End Libraries
 
+  express
+  mysql
+  models/modelPasswords.js (see template)
+
 Database Libraries
