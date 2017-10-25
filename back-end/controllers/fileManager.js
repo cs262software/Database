@@ -9,19 +9,6 @@ var fileModel = require('../models/fileModel.js')
 var fs = require( "fs" );
 
 /*
- * listMyFiles lists the files that a give user has access to
- *
- * @param: req.query.uid, the user id
- *
- * @return: List of files
- */
-exports.listMyFiles = function( req, res ) {
-	var uid = req.query.uid;
-	var myFiles = fileModel.getUserFiles( uid );
-	res.send( myFiles );
-}
-
-/*
  * getFile returns the contents of a file if the requesting user has permission
  *
  * @param: req.query.uid, the user id
@@ -40,7 +27,7 @@ exports.getFile = function( req, res ) {
 			res.send( content );
 		} else if( err.code == 'ENOENT' ) {
 			console.log( err.code );
-			res.send( 'FILE DOES NOT EXIST' );
+			res.send( 'FILE DOES NOT EXIST\nuid: ' + uid + "\nfid: " + fid );
 		} else {
 			console.log( 'FILE ERROR: ', err.code );
 		}

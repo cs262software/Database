@@ -15,24 +15,6 @@ var conn  = mysql.createConnection( {
 } );
 
 /*
- * getFilesByUID searches the db for files viewable by uid
- * 
- * @param: uid
- *
- * @return: array of files found
- */
-exports.getUserFiles = function( uid ) {
-	if ( !uid ) return "NO RESULTS FOUND\n";
-	connectDB( conn );
-	var sql = "SELECT * FROM file WHERE uid = ?"; // TODO: Dependant on database structure
-	var inserts = [ uid ];
-	sql = mysql.format( sql, inserts );
-	var files = queryDB( conn, sql );
-	closeDB( conn );
-	return files ? files : "NO RESULTS FOUND\n";
-}
-
-/*
  * getFilePath searches db for file path if it is viewable by user
  *
  * @param: uid, user id
@@ -46,7 +28,7 @@ exports.getFilePath = function( uid, fid ) {
 	var sql = "SELECT path FROM file WHERE uid = ? AND fid = ?"; // TODO: Dependant on database structure
 	var inserts = [ uid, fid ];
 	sql = mysql.format( sql, inserts );
-	filePath = queryDB( conn, sql );
+	var filePath = queryDB( conn, sql );
 	closeDB( conn );
 	return filePath ? filePath : "NO RESULTS FOUND\n";
 }
