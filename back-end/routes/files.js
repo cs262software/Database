@@ -2,6 +2,8 @@
  * files.js Maintains the file system routing information
  */
 
+'use strict';
+
 var express = require( 'express' );
 var router = express.Router();
 var fileManager = require( '../controllers/fileManager' );
