@@ -59,12 +59,12 @@
 			$characterID = '';
 			if( $character && isset( $chars[$character] ) )
 			{
-				$characterID = "characterID='$chars[$character]'";
+				$characterID = " characterID='$chars[$character]'";
 			}
 			else if ( $character )
 			{
 				$chars[$character] = count($chars);
-				$characterID = "characterID='$chars[$character]'";
+				$characterID = " characterID='$chars[$character]'";
 			}
 			$previous = 'line';
 			// TODO: Generate proper line IDs.
