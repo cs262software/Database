@@ -1,0 +1,30 @@
+There are currently seven permission groups that can be toggled:
+Director, StageManager, AsstStageManager, Light, Sound, StageCrew, Actor
+
+
+If you see something like [REPLACE_ME_HERE], then that is where you would put the actual data.
+
+To insert permissions for a user, do:
+INSERT INTO `theatreappsuite`.`permissions` (`UserID`, `PlayID`) VALUES ('[USERID_HERE]', '[PLAYID_HERE]');
+All permission groups will be disabled by default.
+// NOTE: THIS NEEDS TO BE DONE FOR EVERY USER INVOLVED IN A PLAY //
+// USERID AND PLAYID ARE THE ARBITRARY NUMBERS FROM THE DB,      //
+// NOT THEIR CALVIN ID AND PLAY NAME                             //
+
+
+
+To read permissions for a user, do:
+SELECT * FROM `theatreappsuite`.`permissions` WHERE `UserID` = "[USERID_HERE]" AND `PlayID` = "[PLAYID_HERE]"
+This will return all permissions for a given user in a given play.
+
+
+
+To enable a permission group for a user, do:
+UPDATE `theatreappsuite`.`permissions` SET `[PERMISSION_GROUP_NAME_HERE]`="1" WHERE `UserID` = "[USERID_HERE]" AND `PlayID` = "[PLAYID_HERE]";
+To disable a permission group for a user, do:
+UPDATE `theatreappsuite`.`permissions` SET `[PERMISSION_GROUP_NAME_HERE]`="0" WHERE `UserID` = "[USERID_HERE]" AND `PlayID` = "[PLAYID_HERE]";
+
+
+
+To delete permissions for a user, do:
+DELETE FROM `theatreappsuite`.`user` WHERE `UserID` = "[USERID_HERE]" AND `PlayID` = "[PLAYID_HERE]";
