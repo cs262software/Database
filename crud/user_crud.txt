@@ -15,12 +15,15 @@ INSERT INTO `theatreappsuite`.`user` (`UserName`, `Password`) VALUES ('[CALVIN_I
 
 To read a user, do:
 SELECT * FROM `theatreappsuite`.`user` WHERE `UserName` = "[CALVIN_ID_HERE]";
-This will return the UserName, their name, and their password.
+This will return the UserID, UserName, their name, and their password.
 To get just their name, do:
 SELECT `FirstName`, `LastName` FROM `theatreappsuite`.`user` WHERE `UserName` = "[CALVIN_ID_HERE]";
 To get just their salted password hash, do:
 SELECT `Password` FROM `theatreappsuite`.`user` WHERE `UserName` = "[CALVIN_ID_HERE]";
-
+To get just their UserID, do:
+SELECT `UserID` FROM `theatreappsuite`.`user` WHERE `UserName` = "[CALVIN_ID_HERE]";
+// THE USERID IS VERY IMPORTANT AND IS USED FOR ALL OTHER LOOKUPS //
+// I WOULD RECOMMEND STORING THIS IN MEMORY WHEN THE USER IS LOGGED IN //
 
 
 To update a user, do:
