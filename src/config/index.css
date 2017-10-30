@@ -1,0 +1,3 @@
+/* This imports all the styling from the other components */ 
+@import url('../containers/menu/index.css');
+@import url('../containers/homePage/index.css');
