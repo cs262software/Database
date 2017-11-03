@@ -28,9 +28,12 @@
 	// TODO: Optimize script for memory usage by writing directly to file.
 	$script = '';
 
+	$count = 0;
+
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
 	{
+		$count++;
 		// If the line was just whitespace,
 		if ( trim( $line ) == "" )
 		{
@@ -68,7 +71,9 @@
 			}
 			$previous = 'line';
 			// TODO: Generate proper line IDs.
-			$script .= "<line id='1'$characterID><text>$array[text]\n";
+			$lineID = hash( 'crc32', "$line $count" );
+
+			$script .= "<line id='$lineID'$characterID><text>$array[text]\n";
 		}
 		else
 		{
