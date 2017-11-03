@@ -7,6 +7,18 @@ SELECT Text FROM Line WHERE PlayID = (@param PlayID);
 SELECT FilePath FROM Play;
 
 
+--8.1 DB (5) As a director I want to search for a certain act and scene in the play...
+SELECT MAX(ActNum) as 'NumActs' FROM Line WHERE PlayID = (@param PlayID);
+--Returns the number of acts in a play so that different act numbers can be easily displayed in a dropdown.
+
+SELECT MAX(SceneNum) as 'NumScenes' FROM Line WHERE PlayID = (@param PlayID) AND ActNum = (@param ActNum);
+--Returns the number of scenes in a specific act in a play so that scene numbers can be easily displayed in a dropdown.
+
+--...so that I can input property directions that will be directly related to that scene.
+INSERT INTO PropMovement (PropID, LineID, UserID, DestinationLocation) VALUES ((@param PropID), (@param LineID), (@param UserID (optional)), (@param DestinationLocation));
+
+
+
 --8.5DB As a stage staff I want to know where I need to put the properties.
 --Use 1.0DB script to check user permissions first
 SELECT PM.DestinationLocation, L.LineNum, P.Name FROM PropMovement PM
@@ -36,7 +48,10 @@ SELECT SC.LineID, S.Name, SC.Note FROM SoundCue SC
 --Use 1.0DB script to check user permissions first
 UPDATE Permissions SET (@param PermissionType) = (@param 1 or 0)
 	WHERE UserID = (@param UserID);
-
+	
+--Add a column to blocking for Orientation
+--blocking Origin and Destination should be coordinates.
+	--Should prop location be coordinates as well?
 
 
 
