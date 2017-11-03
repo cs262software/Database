@@ -33,7 +33,10 @@
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
 	{
+		// Count actual lines (for deterministically generating line IDs)
 		$count++;
+		// Tag for "goto-ing"
+		reparseLine:
 		// If the line was just whitespace,
 		if ( trim( $line ) == "" )
 		{
@@ -41,14 +44,20 @@
 			$previous = 'blank';
 		}
 		// If the string starts with 'act'
-		else if ( $previous == 'blank' && preg_match( "/\s*ACT\W+(\w*)/i", $line, $array ) )
+		else if ( $previous == 'blank'
+			&& preg_match( "/\s*ACT\W+(?P<act>\w*)(?P<remaining>.*)/i", $line, $array ) )
 		{
 			
-			$script .= "<act id='$array[1]'>\n";
+			$script .= "<act id='$array[act]'>\n";
 			$previous = 'act';
+			// Sometimes, the line contains "Act II Scene I", so
+			// split the line so it runs through the parser again.
+			$line = $array['remaining'];
+			goto reparseLine;
 		}
 		// If the string starts with 'scene'
-		else if ( $previous == 'blank' && preg_match( "/\s*Scene\W+(\w*)/i", $line, $array ) )
+		else if ( ($previous == 'blank' || $previous == 'act')
+			&& preg_match( "/\s*Scene\W+(\w*)/i", $line, $array ) )
 		{
 			
 			$script .= "<scene id='$array[1]'>\n";

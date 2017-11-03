@@ -64,6 +64,7 @@ Ophelia, Daughter to Polonius.
 Attendants.
 <scene id='Elsinore'>
 <act id='I'>
+.
 <scene id='I'>
 <line id='a40d7042'><text>[Francisco at his post. Enter to him Bernardo.]
 <line id='47c1d13e' characterID='0'><text>
@@ -1272,6 +1273,7 @@ That ever I was born to set it right!--
 Nay, come, let's go together.
 <line id='14b4aed6'><text>[Exeunt.]
 <act id='II'>
+.
 <scene id='I'>
 <line id='58a52e22'><text>[Enter Polonius and Reynaldo.]
 <line id='43896e32' characterID='7'><text>
@@ -2214,6 +2216,7 @@ More relative than this.--the play's the thing
 Wherein I'll catch the conscience of the king.
 <line id='b1b65a8a'><text>[Exit.]
 <act id='III'>
+.
 <scene id='I'>
 <line id='eedb0215'><text>[Enter King, Queen, Polonius, Ophelia, Rosencrantz, and
 Guildenstern.]
@@ -3432,6 +3435,7 @@ Come, sir, to draw toward an end with you:--
 Good night, mother.
 <line id='20e680c7'><text>[Exeunt severally; Hamlet, dragging out Polonius.]
 <act id='IV'>
+.
 <scene id='I'>
 <line id='4d377678'><text>[Enter King, Queen, Rosencrantz and Guildenstern.]
 <line id='ac02c31a' characterID='4'><text>
@@ -4349,6 +4353,7 @@ Now fear I this will give it start again;
 Therefore let's follow.
 <line id='f746eec3'><text>[Exeunt.]
 <act id='V'>
+.
 <scene id='I'>
 <line id='f85f483a'><text>[Enter two Clowns, with spades, &c.]
 <line id='2d0d5fb0'><text>1 Clown.
