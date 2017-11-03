@@ -15,7 +15,8 @@ SELECT MAX(SceneNum) as 'NumScenes' FROM Line WHERE PlayID = (@param PlayID) AND
 --Returns the number of scenes in a specific act in a play so that scene numbers can be easily displayed in a dropdown.
 
 --...so that I can input property directions that will be directly related to that scene.
-INSERT INTO PropMovement (PropID, LineID, UserID, DestinationLocation) VALUES ((@param PropID), (@param LineID), (@param UserID (optional)), (@param DestinationLocation));
+INSERT INTO PropMovement (PropID, LineID, UserID, DestinationLocation) 
+	VALUES ((@param PropID), (@param LineID), (@param UserID (optional)), (@param DestinationLocation));
 
 
 
