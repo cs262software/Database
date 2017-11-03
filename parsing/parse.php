@@ -24,6 +24,24 @@
 	$chars = array();
 	
 	$array = array();
+
+	
+	// Roman numeral parsing index
+	$romans = array(
+	    'M' => 1000,
+	    'CM' => 900,
+	    'D' => 500,
+	    'CD' => 400,
+	    'C' => 100,
+	    'XC' => 90,
+	    'L' => 50,
+	    'XL' => 40,
+	    'X' => 10,
+	    'IX' => 9,
+	    'V' => 5,
+	    'IV' => 4,
+	    'I' => 1,
+	);
 	
 	// TODO: Optimize script for memory usage by writing directly to file.
 	$script = '';
@@ -38,10 +56,17 @@
 			$previous = 'blank';
 		}
 		// If the string starts with 'act'
-		else if ( $previous == 'blank' && preg_match( "/\s*ACT\W+(\w*)/i", $line, $array ) )
+		else if ( $previous == 'blank' && preg_match( "/\s*ACT\W+(?P<act>\w*)/i", $line, $array ) )
 		{
-			
-			$script .= "<act id='$array[1]'>\n";
+			$roman = $array["act"];
+			$result = 0;	
+			foreach ($romans as $key => $value) {
+			    while (strpos($roman, $key) === 0) {
+			        $result += $value;
+			        $roman = substr($roman, strlen($key));
+			    }
+			}
+			$script .= "<act id='$result'>\n";
 			$previous = 'act';
 		}
 		// If the string starts with 'scene'
