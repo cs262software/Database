@@ -25,6 +25,15 @@
 	
 	$array = array();
 	
+	// The tags that are currently open.
+	// (ordered this way so they will be closed correctly)
+	$openTags = array(
+		'text' => 0,
+		'line' => 0,
+		'scene' => 0,
+		'act' => 0,
+	);
+
 	// TODO: Optimize script for memory usage by writing directly to file.
 	$script = '';
 
@@ -33,6 +42,7 @@
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
 	{
+		$line = str_replace( '&', '&amp;', $line );
 		// Count actual lines (for deterministically generating line IDs)
 		$count++;
 		// Tag for "goto-ing"
@@ -47,9 +57,11 @@
 		else if ( $previous == 'blank'
 			&& preg_match( "/\s*ACT\W+(?P<act>\w*)(?P<remaining>.*)/i", $line, $array ) )
 		{
+			$script .= closeTags( $openTags, 'act' );
 			
 			$script .= "<act id='$array[act]'>\n";
 			$previous = 'act';
+			$openTags[$previous] = 1;
 			// Sometimes, the line contains "Act II Scene I", so
 			// split the line so it runs through the parser again.
 			$line = $array['remaining'];
@@ -59,13 +71,15 @@
 		else if ( ($previous == 'blank' || $previous == 'act')
 			&& preg_match( "/\s*Scene\W+(\w*)/i", $line, $array ) )
 		{
-			
+			$script .= closeTags( $openTags, 'scene' );
 			$script .= "<scene id='$array[1]'>\n";
 			$previous = 'scene';
+			$openTags[$previous] = 1;
 		}
 		// Parse lines
 		else if ( $previous == 'blank' && preg_match( "/\s*(?P<name1>\w*\.)?\s*(?P<name2>\w*\.)?\s*(?P<text>.*)?/", $line, $array ) )
 		{
+			$script .= closeTags( $openTags, 'line' );
 			$character = isset( $array['name1'] ) ? $array['name1'] : '';
 			$character .= isset( $array['name2'] ) ? $array['name2'] : '';
 			$characterID = '';
@@ -83,6 +97,7 @@
 			$lineID = hash( 'crc32', "$line $count" );
 
 			$script .= "<line id='$lineID'$characterID><text>$array[text]\n";
+			$openTags[$previous] = 1; $openTags['text'] = 1;
 		}
 		else
 		{
@@ -90,7 +105,7 @@
 			$previous = 'line';
 		}
 	}
-	
+	$script .= closeTags( $openTags );
 	$characters = "<roles>\n";
 	foreach( $chars as $name => $id )
 	{
@@ -101,3 +116,23 @@
 	echo "<script title='$title'>\n$characters$script</script>\n";
 }
 
+
+function closeTags( &$openTags, $level = 'act' )
+{
+	$output = '';
+	$continue = FALSE;
+	foreach( $openTags as $tag => $number )
+	{
+		while( $number > 0 )
+		{
+			$output .= "</$tag>\n";
+			$number--;
+		}
+		$openTags[$tag] = 0;
+		if ( $tag == $level )
+		{
+			break;
+		}
+	}
+	return $output;
+}
