@@ -40,6 +40,7 @@
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
 	{
+		$line = str_replace( '&', '&amp;', $line );
 		// If the line was just whitespace,
 		if ( trim( $line ) == "" )
 		{
