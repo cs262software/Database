@@ -77,11 +77,10 @@
 			$openTags[$previous] = 1;
 		}
 		// Parse lines
-		else if ( $previous == 'blank' && preg_match( "/\s*(?P<name1>\w*\.)?\s*(?P<name2>\w*\.)?\s*(?P<text>.*)?/", $line, $array ) )
+		else if ( $previous == 'blank' && preg_match( "/\s*(?P<name>\w*\.(\s*\w*\.)?)?\s*(?P<text>.*)?/", $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'line' );
-			$character = isset( $array['name1'] ) ? $array['name1'] : '';
-			$character .= isset( $array['name2'] ) ? $array['name2'] : '';
+			$character = isset( $array['name'] ) ? $array['name'] : '';
 			$characterID = '';
 			if( $character && isset( $chars[$character] ) )
 			{
