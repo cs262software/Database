@@ -39,6 +39,18 @@
 
 	$count = 0;
 
+	$regex = array(
+		'default' => array(
+			'act' => "/^\s*ACT\W+(?P<act>\w*)(?P<remaining>.*)/i",
+			'scene' => "/^\s*Scene\W+(\w*)/i",
+			'line' => "/\s*(?P<name>\w*(\s*\w*)?:)?\s*(?P<text>.*)?/",
+		),
+	);
+	$regex['shakes'] = $regex['default'];
+	$regex['shakes']['line'] = "/\s*(?P<name>\w*\.(\s*\w*\.)?)?\s*(?P<text>.*)?/";
+
+	$parsingType = 'shakes';
+
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
 	{
@@ -53,9 +65,13 @@
 			// remember that, and go to the next line.
 			$previous = 'blank';
 		}
+		else if ( $title == NULL )
+		{
+			$title = trim($line);
+		}
 		// If the string starts with 'act'
 		else if ( $previous == 'blank'
-			&& preg_match( "/\s*ACT\W+(?P<act>\w*)(?P<remaining>.*)/i", $line, $array ) )
+			&& preg_match( $regex[$parsingType]['act'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'act' );
 			
@@ -69,7 +85,7 @@
 		}
 		// If the string starts with 'scene'
 		else if ( ($previous == 'blank' || $previous == 'act')
-			&& preg_match( "/\s*Scene\W+(\w*)/i", $line, $array ) )
+			&& preg_match( $regex[$parsingType]['scene'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'scene' );
 			$script .= "<scene id='$array[1]'>\n";
@@ -77,7 +93,7 @@
 			$openTags[$previous] = 1;
 		}
 		// Parse lines
-		else if ( $previous == 'blank' && preg_match( "/\s*(?P<name>\w*\.(\s*\w*\.)?)?\s*(?P<text>.*)?/", $line, $array ) )
+		else if ( $previous == 'blank' && preg_match( $regex[$parsingType]['line'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'line' );
 			$character = isset( $array['name'] ) ? $array['name'] : '';
