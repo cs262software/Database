@@ -33,7 +33,7 @@
 	<character id='30' name='Lord.'/>
 	<character id='31' name='Fort.'/>
 </roles>
-<line id='9ae2b1a1'><text>by William Shakespeare
+<act id=0><scene id=0><line id='9ae2b1a1'><text>by William Shakespeare
 </text>
 </line>
 <line id='ddb0d54a'><text>PERSONS REPRESENTED.
@@ -71,9 +71,11 @@ Ophelia, Daughter to Polonius.
 Attendants.
 </text>
 </line>
-<scene id='0' name='Elsinore'>
 </scene>
-<act id='0' name='I'>
+<scene id='1' name='Elsinore'>
+</scene>
+</act>
+<act id='1' name='I'>
 .
 <scene id='0' name='I'>
 <line id='a40d7042'><text>[Francisco at his post. Enter to him Bernardo.]
@@ -1874,7 +1876,7 @@ Nay, come, let's go together.
 </line>
 </scene>
 </act>
-<act id='1' name='II'>
+<act id='2' name='II'>
 .
 <scene id='0' name='I'>
 <line id='58a52e22'><text>[Enter Polonius and Reynaldo.]
@@ -3286,7 +3288,7 @@ Wherein I'll catch the conscience of the king.
 </line>
 </scene>
 </act>
-<act id='2' name='III'>
+<act id='3' name='III'>
 .
 <scene id='0' name='I'>
 <line id='eedb0215'><text>[Enter King, Queen, Polonius, Ophelia, Rosencrantz, and
@@ -5126,7 +5128,7 @@ Good night, mother.
 </line>
 </scene>
 </act>
-<act id='3' name='IV'>
+<act id='4' name='IV'>
 .
 <scene id='0' name='I'>
 <line id='4d377678'><text>[Enter King, Queen, Rosencrantz and Guildenstern.]
@@ -6540,7 +6542,7 @@ Therefore let's follow.
 </line>
 </scene>
 </act>
-<act id='4' name='V'>
+<act id='5' name='V'>
 .
 <scene id='0' name='I'>
 <line id='d5c697f6'><text>[Enter two Clowns, with spades, &amp;c.]

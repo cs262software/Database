@@ -38,8 +38,10 @@
 	$script = '';
 
 	$count = 0;
-	$actCount = 0;
-	$sceneCount = 0;
+	$increment = array(
+		'act' => 0,
+		'scene' => 0,
+	);
 
 	$regex = array(
 		'default' => array(
@@ -76,9 +78,10 @@
 			&& preg_match( $regex[$parsingType]['act'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'act' );
-			$script .= "<act id='$actCount' name='$array[act]'>\n";
-			$sceneCount = 0;
-			$actCount++;
+			// Since this is the lowest level, we don't need `$script .= openTags( $openTags, $increment, 'act' );`
+			$script .= "<act id='$increment[act]' name='$array[act]'>\n";
+			$increment['scene'] = 0;
+			$increment['act']++;
 			$previous = 'act';
 			$openTags[$previous] = 1;
 			// Sometimes, the line contains "Act II Scene I", so
@@ -91,8 +94,9 @@
 			&& preg_match( $regex[$parsingType]['scene'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'scene' );
-			$script .= "<scene id='$sceneCount' name='$array[scene]'>\n";
-			$sceneCount++;
+			$script .= openTags( $openTags, $increment, 'scene' );
+			$script .= "<scene id='$increment[scene]' name='$array[scene]'>\n";
+			$increment['scene']++;
 			$previous = 'scene';
 			$openTags[$previous] = 1;
 		}
@@ -100,6 +104,7 @@
 		else if ( $previous == 'blank' && preg_match( $regex[$parsingType]['line'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'line' );
+			$script .= openTags( $openTags, $increment, 'line' );
 			$character = isset( $array['name'] ) ? $array['name'] : '';
 			$characterID = '';
 			if( $character && isset( $chars[$character] ) )
@@ -155,5 +160,33 @@ function closeTags( &$openTags, $level = 'act' )
 			break;
 		}
 	}
+	return $output;
+}
+
+/**
+ * Open the tags that need to be open before this one can be opened.
+ */
+function openTags( &$openTags, &$increment, $level = 'line' )
+{
+	$output = '';
+
+	foreach( array_reverse($openTags) as $tag => $number )
+	{
+		if ( $tag == $level )
+		{
+			break;
+		}
+		if ( $number == 0 )
+		{
+			$output .= "<$tag id='$increment[$tag]'>";
+			$openTags[$tag] = 1;
+			$increment[$tag]++;
+			if ( $tag == 'act' )
+			{
+				$increment['scene'] = 0;
+			}
+		}
+	}
+
 	return $output;
 }
