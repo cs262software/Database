@@ -38,11 +38,13 @@
 	$script = '';
 
 	$count = 0;
+	$actCount = 0;
+	$sceneCount = 0;
 
 	$regex = array(
 		'default' => array(
 			'act' => "/^\s*ACT\W+(?P<act>\w*)(?P<remaining>.*)/i",
-			'scene' => "/^\s*Scene\W+(\w*)/i",
+			'scene' => "/^\s*Scene\W+(?P<scene>\w*)/i",
 			'line' => "/\s*(?P<name>\w*(\s*\w*)?:)?\s*(?P<text>.*)?/",
 		),
 	);
@@ -74,8 +76,9 @@
 			&& preg_match( $regex[$parsingType]['act'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'act' );
-			
-			$script .= "<act id='$array[act]'>\n";
+			$script .= "<act id='$actCount' name='$array[act]'>\n";
+			$sceneCount = 0;
+			$actCount++;
 			$previous = 'act';
 			$openTags[$previous] = 1;
 			// Sometimes, the line contains "Act II Scene I", so
@@ -88,7 +91,8 @@
 			&& preg_match( $regex[$parsingType]['scene'], $line, $array ) )
 		{
 			$script .= closeTags( $openTags, 'scene' );
-			$script .= "<scene id='$array[1]'>\n";
+			$script .= "<scene id='$sceneCount' name='$array[scene]'>\n";
+			$sceneCount++;
 			$previous = 'scene';
 			$openTags[$previous] = 1;
 		}
@@ -131,7 +135,9 @@
 	echo "<script title='$title'>\n$characters$script</script>\n";
 }
 
-
+/**
+ * Close the tags that need to be closed before this one can be opened.
+ */
 function closeTags( &$openTags, $level = 'act' )
 {
 	$output = '';

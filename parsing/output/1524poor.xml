@@ -71,11 +71,11 @@ Ophelia, Daughter to Polonius.
 Attendants.
 </text>
 </line>
-<scene id='Elsinore'>
+<scene id='0' name='Elsinore'>
 </scene>
-<act id='I'>
+<act id='0' name='I'>
 .
-<scene id='I'>
+<scene id='0' name='I'>
 <line id='a40d7042'><text>[Francisco at his post. Enter to him Bernardo.]
 </text>
 </line>
@@ -476,7 +476,7 @@ Where we shall find him most conveniently.
 </text>
 </line>
 </scene>
-<scene id='II'>
+<scene id='1' name='II'>
 <line id='8d0424b7'><text>[Enter the King, Queen, Hamlet, Polonius, Laertes, Voltimand,
 Cornelius, Lords, and Attendant.]
 </text>
@@ -1001,7 +1001,7 @@ Though all the earth o'erwhelm them, to men's eyes.
 </text>
 </line>
 </scene>
-<scene id='III'>
+<scene id='2' name='III'>
 <line id='c5e2ba92'><text>[Enter Laertes and Ophelia.]
 </text>
 </line>
@@ -1238,7 +1238,7 @@ I shall obey, my lord.
 </text>
 </line>
 </scene>
-<scene id='IV'>
+<scene id='3' name='IV'>
 <line id='d956b37a'><text>[Enter Hamlet, Horatio, and Marcellus.]
 </text>
 </line>
@@ -1458,7 +1458,7 @@ Nay, let's follow him.
 </text>
 </line>
 </scene>
-<scene id='V'>
+<scene id='4' name='V'>
 <line id='9d1c2856'><text>[Enter Ghost and Hamlet.]
 </text>
 </line>
@@ -1874,9 +1874,9 @@ Nay, come, let's go together.
 </line>
 </scene>
 </act>
-<act id='II'>
+<act id='1' name='II'>
 .
-<scene id='I'>
+<scene id='0' name='I'>
 <line id='58a52e22'><text>[Enter Polonius and Reynaldo.]
 </text>
 </line>
@@ -2133,7 +2133,7 @@ More grief to hide than hate to utter love.
 </text>
 </line>
 </scene>
-<scene id='II'>
+<scene id='1' name='II'>
 <line id='ae67ec8e'><text>[Enter King, Rosencrantz, Guildenstern, and Attendants.]
 </text>
 </line>
@@ -3286,9 +3286,9 @@ Wherein I'll catch the conscience of the king.
 </line>
 </scene>
 </act>
-<act id='III'>
+<act id='2' name='III'>
 .
-<scene id='I'>
+<scene id='0' name='I'>
 <line id='eedb0215'><text>[Enter King, Queen, Polonius, Ophelia, Rosencrantz, and
 Guildenstern.]
 </text>
@@ -3644,7 +3644,7 @@ Madness in great ones must not unwatch'd go.
 </text>
 </line>
 </scene>
-<scene id='II'>
+<scene id='1' name='II'>
 <line id='9fccde33'><text>[Enter Hamlet and certain Players.]
 </text>
 </line>
@@ -4529,7 +4529,7 @@ To give them seals never, my soul, consent!
 </text>
 </line>
 </scene>
-<scene id='III'>
+<scene id='2' name='III'>
 <line id='166aaec9'><text>[Enter King, Rosencrantz, and Guildenstern.]
 </text>
 </line>
@@ -4688,7 +4688,7 @@ Words without thoughts never to heaven go.
 </text>
 </line>
 </scene>
-<scene id='IV'>
+<scene id='3' name='IV'>
 <line id='b17ce336'><text>[Enter Queen and Polonius.]
 </text>
 </line>
@@ -5126,9 +5126,9 @@ Good night, mother.
 </line>
 </scene>
 </act>
-<act id='IV'>
+<act id='3' name='IV'>
 .
-<scene id='I'>
+<scene id='0' name='I'>
 <line id='4d377678'><text>[Enter King, Queen, Rosencrantz and Guildenstern.]
 </text>
 </line>
@@ -5218,7 +5218,7 @@ My soul is full of discord and dismay.
 </text>
 </line>
 </scene>
-<scene id='II'>
+<scene id='1' name='II'>
 <line id='528a1f87'><text>[Enter Hamlet.]
 </text>
 </line>
@@ -5307,7 +5307,7 @@ Of nothing: bring me to him. Hide fox, and all after.
 </text>
 </line>
 </scene>
-<scene id='III'>
+<scene id='2' name='III'>
 <line id='5cc3230d'><text>[Enter King,attended.]
 </text>
 </line>
@@ -5486,7 +5486,7 @@ Howe'er my haps, my joys were ne'er begun.
 </text>
 </line>
 </scene>
-<scene id='IV'>
+<scene id='3' name='IV'>
 <line id='add19cb0'><text>[Enter Fortinbras, and Forces marching.]
 </text>
 </line>
@@ -5627,7 +5627,7 @@ My thoughts be bloody, or be nothing worth!
 </text>
 </line>
 </scene>
-<scene id='V'>
+<scene id='4' name='V'>
 <line id='c6f65fac'><text>[Enter Queen and Horatio.]
 </text>
 </line>
@@ -6112,7 +6112,7 @@ I pray you go with me.
 </text>
 </line>
 </scene>
-<scene id='VI'>
+<scene id='5' name='VI'>
 <line id='bd55e794'><text>[Enter Horatio and a Servant.]
 </text>
 </line>
@@ -6179,7 +6179,7 @@ To him from whom you brought them.
 </text>
 </line>
 </scene>
-<scene id='VII'>
+<scene id='6' name='VII'>
 <line id='d3cafa04'><text>[Enter King and Laertes.]
 </text>
 </line>
@@ -6540,9 +6540,9 @@ Therefore let's follow.
 </line>
 </scene>
 </act>
-<act id='V'>
+<act id='4' name='V'>
 .
-<scene id='I'>
+<scene id='0' name='I'>
 <line id='d5c697f6'><text>[Enter two Clowns, with spades, &amp;c.]
 </text>
 </line>
@@ -7207,7 +7207,7 @@ Till then in patience our proceeding be.
 </text>
 </line>
 </scene>
-<scene id='II'>
+<scene id='1' name='II'>
 <line id='cee1b9aa'><text>[Enter Hamlet and Horatio.]
 </text>
 </line>
