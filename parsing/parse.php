@@ -2,7 +2,8 @@
 	/**
 	 * @brief: A script for parsing text files into poorly formed script XML.
 	 *
-	 * Usage: php parse.php data/1524.txt > output/1524poor.xml
+	 * Usage: php parse.php data/1524.txt shakes > output/1524poor.xml
+	 * php parse.php data/TheInterview.txt > output/theinterview.xml
 	 * @author: zjd7@students.calvin.edu (earboxer)
 	 */
 	// Take the first command line argument.
@@ -11,7 +12,8 @@
 	// For our state machine we need to just remember what the last line was.
 	$previous = 'blank';
 
-	$title = NULL;// Title of the piece
+	$title = '';// Title of the piece
+	$author = '';// Author of the piece
 	
 	/**
 	 * All of the characters in the play, formatted like
@@ -53,7 +55,14 @@
 	$regex['shakes'] = $regex['default'];
 	$regex['shakes']['line'] = "/\s*(?P<name>\w*\.(\s*\w*\.)?)?\s*(?P<text>.*)?/";
 
-	$parsingType = 'shakes';
+	$parsingType = 'default';
+	if ( $argc == 3 )
+	{
+		if ( isset( $regex[$argv[2]] ) )
+		{
+			$parsingType = $argv[2];
+		}
+	}
 
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
@@ -69,9 +78,13 @@
 			// remember that, and go to the next line.
 			$previous = 'blank';
 		}
-		else if ( $title == NULL )
+		else if ( $title == '' )
 		{
 			$title = trim($line);
+		}
+		else if ( $author == '' )
+		{
+			$author = trim(preg_replace("/^by /i", "", $line));
 		}
 		// If the string starts with 'act'
 		else if ( $previous == 'blank'
@@ -137,7 +150,7 @@
 	}
 	$characters .= "</roles>\n";
 	
-	echo "<script title='$title'>\n$characters$script</script>\n";
+	echo "<script title='$title' author='$author'>\n$characters$script</script>\n";
 }
 
 /**

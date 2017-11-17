@@ -1,4 +1,4 @@
-<script title='HAMLET, PRINCE OF DENMARK'>
+<script title='HAMLET, PRINCE OF DENMARK' author='William Shakespeare'>
 <roles>
 	<character id='0' name='Ber.'/>
 	<character id='1' name='Fran.'/>
@@ -33,10 +33,7 @@
 	<character id='30' name='Lord.'/>
 	<character id='31' name='Fort.'/>
 </roles>
-<act id=0><scene id=0><line id='9ae2b1a1'><text>by William Shakespeare
-</text>
-</line>
-<line id='ddb0d54a'><text>PERSONS REPRESENTED.
+<act id='0'><scene id='0'><line id='ddb0d54a'><text>PERSONS REPRESENTED.
 </text>
 </line>
 <line id='4b2cd567'><text>Claudius, King of Denmark.
