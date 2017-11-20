@@ -40,10 +40,10 @@
 	$script = '';
 
 	$count = 0;
-	$INDEX_NUMBER = 1;
+	define("INDEX_NUMBER", 1);
 	$increment = array(
-		'act' => $INDEX_NUMBER,
-		'scene' => $INDEX_NUMBER,
+		'act' => INDEX_NUMBER,
+		'scene' => INDEX_NUMBER,
 	);
 
 	$regex = array(
@@ -94,7 +94,7 @@
 			$script .= closeTags( $openTags, 'act' );
 			// Since this is the lowest level, we don't need `$script .= openTags( $openTags, $increment, 'act' );`
 			$script .= "<act id='$increment[act]' name='$array[act]'>\n";
-			$increment['scene'] = $INDEX_NUMBER;
+			$increment['scene'] = INDEX_NUMBER;
 			$increment['act']++;
 			$previous = 'act';
 			$openTags[$previous] = 1;
@@ -127,7 +127,7 @@
 			}
 			else if ( $character )
 			{
-				$chars[$character] = count($chars) + $INDEX_NUMBER;
+				$chars[$character] = count($chars) + INDEX_NUMBER;
 				$characterID = " characterID='$chars[$character]'";
 			}
 			$previous = 'line';
@@ -192,12 +192,13 @@ function openTags( &$openTags, &$increment, $level = 'line' )
 		}
 		if ( $number == 0 )
 		{
-			$output .= "<$tag id='$increment[$tag]'>";
+			$id = $increment[$tag];
+			$output .= "<$tag id='$id'>\n";
 			$openTags[$tag] = 1;
 			$increment[$tag]++;
 			if ( $tag == 'act' )
 			{
-				$increment['scene'] = $INDEX_NUMBER;
+				$increment['scene'] = INDEX_NUMBER;
 			}
 		}
 	}
