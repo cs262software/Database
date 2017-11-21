@@ -50,7 +50,7 @@
 		'default' => array(
 			'act' => "/^\s*ACT\W+(?P<act>\w*)\.?(?P<remaining>.*)/i",
 			'scene' => "/^\s*Scene\W+(?P<scene>\w*)/i",
-			'line' => "/\s*(?P<name>\w*(\s*\w*)?:)?\s*(?P<text>.*)?/",
+			'line' => "/\s*((?P<name>\w*(\s*\w*)?):)?\s*(?P<text>.*)?/",
 		),
 	);
 	$regex['shakes'] = $regex['default'];

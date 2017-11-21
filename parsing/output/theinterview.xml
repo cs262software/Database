@@ -1,10 +1,10 @@
 <script title='The Interview' author='Patrick M. Bailey'>
 <roles>
-	<character id='1' name='Character Synopsis:'/>
-	<character id='2' name='Albert:'/>
-	<character id='3' name='June:'/>
-	<character id='4' name='Bess:'/>
-	<character id='5' name='Driver:'/>
+	<character id='1' name='Character Synopsis'/>
+	<character id='2' name='Albert'/>
+	<character id='3' name='June'/>
+	<character id='4' name='Bess'/>
+	<character id='5' name='Driver'/>
 </roles>
 <act id='1'>
 <scene id='1'>
