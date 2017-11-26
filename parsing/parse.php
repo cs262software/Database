@@ -1,13 +1,14 @@
 <?php
-	/**
-	 * @brief: A script for parsing text files into poorly formed script XML.
-	 *
-	 * Usage: php parse.php data/1524.txt shakes > output/1524poor.xml
-	 * php parse.php data/TheInterview.txt > output/theinterview.xml
-	 * @author: zjd7@students.calvin.edu (earboxer)
-	 */
-	// Take the first command line argument.
-	$handle = fopen($argv[1], "r");
+/**
+ * @brief: A function for parsing text files into script XML.
+ *
+ * Usage: See setup.php
+ * @author: zjd7@students.calvin.edu (earboxer)
+ */
+function parse( $filename = NULL, $outfilename = NULL, $options = array() )
+{
+	$handle = fopen($filename, "r");
+	$outfile = fopen("$outfilename.end.xml", "w");
 
 	// For our state machine we need to just remember what the last line was.
 	$previous = 'blank';
@@ -36,9 +37,6 @@
 		'act' => 0,
 	);
 
-	// TODO: Optimize script for memory usage by writing directly to file.
-	$script = '';
-
 	$count = 0;
 	define("INDEX_NUMBER", 1);
 	$increment = array(
@@ -56,19 +54,15 @@
 	$regex['shakes'] = $regex['default'];
 	$regex['shakes']['line'] = "/\s*(?P<name>\w*\.(\s*\w*\.)?)?\s*(?P<text>.*)?/";
 
-	$parsingType = 'default';
-	if ( $argc == 3 )
-	{
-		if ( isset( $regex[$argv[2]] ) )
-		{
-			$parsingType = $argv[2];
-		}
-	}
+	ini_set('default_charset', 'utf-8');
+	include "fixMSWord.php";
 
 	// Read each line.
 	if ( $handle ){while (($line = fgets($handle)) !== false)
 	{
+		$line = fixMSWord( $line );
 		$line = str_replace( '&', '&amp;', $line );
+
 		// Count actual lines (for deterministically generating line IDs)
 		$count++;
 		// Tag for "goto-ing"
@@ -89,11 +83,11 @@
 		}
 		// If the string starts with 'act'
 		else if ( $previous == 'blank'
-			&& preg_match( $regex[$parsingType]['act'], $line, $array ) )
+			&& preg_match( $regex[$options['parsingType']]['act'], $line, $array ) )
 		{
-			$script .= closeTags( $openTags, 'act' );
+			fwrite( $outfile, closeTags( $openTags, 'act' ) );
 			// Since this is the lowest level, we don't need `$script .= openTags( $openTags, $increment, 'act' );`
-			$script .= "<act id='$increment[act]' name='$array[act]'>\n";
+			fwrite( $outfile, "<act id='$increment[act]' name='$array[act]'>\n" );
 			$increment['scene'] = INDEX_NUMBER;
 			$increment['act']++;
 			$previous = 'act';
@@ -105,20 +99,20 @@
 		}
 		// If the string starts with 'scene'
 		else if ( ($previous == 'blank' || $previous == 'act')
-			&& preg_match( $regex[$parsingType]['scene'], $line, $array ) )
+			&& preg_match( $regex[$options['parsingType']]['scene'], $line, $array ) )
 		{
-			$script .= closeTags( $openTags, 'scene' );
-			$script .= openTags( $openTags, $increment, 'scene' );
-			$script .= "<scene id='$increment[scene]' name='$array[scene]'>\n";
+			fwrite( $outfile, closeTags( $openTags, 'scene' ) );
+			fwrite( $outfile, openTags( $openTags, $increment, 'scene' ) );
+			fwrite( $outfile, "<scene id='$increment[scene]' name='$array[scene]'>\n" );
 			$increment['scene']++;
 			$previous = 'scene';
 			$openTags[$previous] = 1;
 		}
 		// Parse lines
-		else if ( $previous != 'line' && preg_match( $regex[$parsingType]['line'], $line, $array ) )
+		else if ( $previous != 'line' && preg_match( $regex[$options['parsingType']]['line'], $line, $array ) )
 		{
-			$script .= closeTags( $openTags, 'line' );
-			$script .= openTags( $openTags, $increment, 'line' );
+			fwrite( $outfile, closeTags( $openTags, 'line' ) );
+			fwrite( $outfile, openTags( $openTags, $increment, 'line' ) );
 			$character = isset( $array['name'] ) ? $array['name'] : '';
 			$characterID = '';
 			if( $character && isset( $chars[$character] ) )
@@ -134,16 +128,16 @@
 			// TODO: Generate proper line IDs.
 			$lineID = hash( 'crc32', "$line $count" );
 
-			$script .= "<line id='$lineID'$characterID><text>$array[text]\n";
+			fwrite( $outfile, "<line id='$lineID'$characterID><text>$array[text]\n" );
 			$openTags[$previous] = 1; $openTags['text'] = 1;
 		}
 		else
 		{
-			$script .= trim($line) . "\n";
+			fwrite( $outfile, trim($line) . "\n" );
 			$previous = 'line';
 		}
 	}
-	$script .= closeTags( $openTags );
+	fwrite( $outfile, closeTags( $openTags ) );
 	$characters = "<roles>\n";
 	foreach( $chars as $name => $id )
 	{
@@ -151,8 +145,25 @@
 	}
 	$characters .= "</roles>\n";
 	
-	echo "<script title='$title' author='$author'>\n$characters$script</script>\n";
-}
+	$fileStart = "<script title='$title' author='$author'>\n$characters";
+	$startfiletmp = fopen( $outfilename . ".start.xml", "w");
+	fwrite($startfiletmp, $fileStart);
+
+	fwrite($outfile, "</script>\n" );
+
+	fclose($handle);
+	fclose($outfile);
+	
+	// TODO: Sanitize this.
+	$outfilenameSani = escapeshellarg( $outfilename );
+	$outfilenameSaniStart = escapeshellarg( "$outfilename.start.xml" );
+	$outfilenameSaniEnd = escapeshellarg( "$outfilename.end.xml" );
+	$command = "cat $outfilenameSaniStart $outfilenameSaniEnd > $outfilenameSani";
+	shell_exec( $command );
+	$command = "rm $outfilenameSaniStart $outfilenameSaniEnd";
+	shell_exec( $command );
+	echo "<a href='" . htmlspecialchars($outfilename) . "'>$outfilename</a>";
+}}
 
 /**
  * Close the tags that need to be closed before this one can be opened.
