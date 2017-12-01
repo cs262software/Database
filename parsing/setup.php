@@ -31,7 +31,7 @@ if ( $filename )
 {
 	include "parse.php";
 	ini_set('memory_limit', -1);
-	parse($filename, $outfilename, $options);
+	echo parse($filename, $outfilename, $options);
 }
 else
 {

@@ -7,6 +7,7 @@
  */
 function parse( $filename = NULL, $outfilename = NULL, $options = array() )
 {
+	if ( ! file_exists( $filename ) ) return 'error';
 	$handle = fopen($filename, "r");
 	$outfile = fopen("$outfilename.end.xml", "w");
 
@@ -162,7 +163,7 @@ function parse( $filename = NULL, $outfilename = NULL, $options = array() )
 	shell_exec( $command );
 	$command = "rm $outfilenameSaniStart $outfilenameSaniEnd";
 	shell_exec( $command );
-	echo "<a href='" . htmlspecialchars($outfilename) . "'>$outfilename</a>";
+	return $outfilename;
 }}
 
 /**
