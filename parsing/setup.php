@@ -12,7 +12,8 @@
  */
 $filename = isset($_GET['filename']) ? $_GET['filename'] :
 	(isset($argv[1]) ? $argv[1] : '');
-$outfilename = isset( $argv[2] ) ? $argv[2] : "tmp/outfile.xml";
+$hash = hash('crc32', time());
+$outfilename = isset( $argv[2] ) ? $argv[2] : "tmp/outfile-$hash.xml";
 
 $options = array(
 	'parsingType' => isset($_GET['parsingType']) ? $_GET['parsingType'] : 'default',

@@ -18,8 +18,15 @@
 </header>
 <form action='setup.php'>
 <input placeholder="filename" name="filename" type='textbox'/>
+<br/>
+Line deliniation.<br/>
+<input type="radio" name="parsingType" value="" checked>Colon<br>
+<input type="radio" name="parsingType" value="shakes">period<br>
+<br/>
 <input type='submit'/>
 </form>
+<br/>
+<a id='outputfilename'></a>
 <textarea rows=30 disabled id='output'>
 </textarea>
 <script src="https://zachdecook.com/sts/res/js/jqm.js"></script>
