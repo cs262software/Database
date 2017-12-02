@@ -138,7 +138,7 @@ CREATE TABLE `line` (
   `ActNum` int(11) NOT NULL,
   `SceneNum` int(11) NOT NULL,
   `LineNum` int(11) NOT NULL,
-  `Text` varchar(500) NOT NULL,
+  `Text` text NOT NULL,
   `DirectorNote` varchar(500) DEFAULT NULL,
   `FrenchID` int(11) DEFAULT NULL COMMENT 'This determines whether or not a given line is part of a french scene. NULL means that it is not, otherwise it is the "subscene"'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
